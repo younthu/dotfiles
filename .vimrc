@@ -1,106 +1,107 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" This is vim file for personal usage
+"
+" Some tutorials
+" 1. https://github.com/spf13/spf13-vim
+" 2. http://www.viemu.com/vi-vim-cheat-sheet.gif , cheatsheet
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-	set undodir=~/.vim/undo
+syntax on
+set encoding=utf-8
+set number
+
+"NeoBundle Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-" Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
+" Required:
+set runtimepath+=/Users/andrewy/.vim/bundle/neobundle.vim/
 
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
+" Required:
+call neobundle#begin(expand('/Users/andrewy/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+"NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'easymotion/vim-easymotion' " try ',,s' to search a char or ',,w' to show all those beginning of words, ',,b' to show previous words
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'vim-scripts/taglist.vim'
+
+" for python
+NeoBundle 'klen/python-mode'
+
+" max line lenght to 250
+let g:pymode_options_max_line_length=250
+
+" NeoBundle 'davidhalter/jedi-vim'
+
+" Snippets support, utlisnips is engine, vim-snippets is snippets
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'epilande/vim-react-snippets'
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<enter>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" You can specify revision/branch/tag.
+" NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Famous YouCompleteMe
+NeoBundle 'Valloric/YouCompleteMe'
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+" Dsiplay incomplete commands
+set showcmd
+
+" Show the cursor position all the time
+set ruler
+
+" Highlight current line, current column
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+
 " Always show status line
 set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
+
+" Highlight searches
+set hlsearch
+
+" Show 'invisible' characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+
+" Ignore case of searches
+set ignorecase
+
 " Show the filename in the window titlebar
 set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
 
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" Change <Leader> key to ','
+let mapleader = ","
 
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
+
+

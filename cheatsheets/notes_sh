@@ -1,0 +1,2 @@
+# link cheat folder
+ln -s /Users/andrewy/sourcecode/github/dotfiles/cheatsheets ~/.cheat

@@ -1,0 +1,16 @@
+# add user as both caller and callee
+class CreateAdminColdCalls < ActiveRecord::Migration[5.1]
+  def change
+    create_table :admin_cold_calls do |t|
+      t.references :caller, index: true, foreign_key: {to_table: :users}
+      t.references :callee, index: true, foreign_key: {to_table: :users}
+...
+
+class Admin::ColdCall < ApplicationRecord
+  belongs_to :caller, :class_name => "User", foreign_key: "caller_id"
+  belongs_to :callee, :class_name => "User", foreign_key: "callee_id"
+
+end
+
+
+#
