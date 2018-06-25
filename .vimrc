@@ -3,6 +3,8 @@
 " Some tutorials
 " 1. https://github.com/spf13/spf13-vim
 " 2. http://www.viemu.com/vi-vim-cheat-sheet.gif , cheatsheet
+" 3. http://feihu.me/blog/2014/intro-to-vim/ , introduction to many famous
+" plugin in chinese, with gif
 
 syntax on
 set encoding=utf-8
@@ -105,3 +107,15 @@ let mapleader = ","
 
 
 
+" YCM python3 support
+let g:ycm_python_binary_path = 'python'
+
+" YCM jump to definition
+map gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Save buffer with <Leader> + S. note: Ctrl + S will suspend the terminal,
+" Command key not work as well, https://stackoverflow.com/questions/33060569/mapping-command-s-to-w-in-vim
+" never try to map Ctrl + S as :w
+" there is a tutorial about vim key mapping, https://www.jianshu.com/p/2c9a85277d49
+" Another one with detailed usage explain, http://blog.csdn.net/jasonding1354/article/details/45372007
+:map <Leader>s :w<CR>

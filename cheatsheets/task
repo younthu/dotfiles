@@ -1,0 +1,78 @@
+[best practices](https://taskwarrior.org/docs/best-practices.html)
+[customize attributes for task](https://cs-syd.eu/posts/2015-07-12-gtd-with-taskwarrior-part-5-doing)
+
+
+[简介](http://www.cnblogs.com/xdao/p/cli_task.html)
+taskwarrior是一个命令行的任务管理神器，同时也有服务端，支持同步。
+语法规则为
+task [ <filter> ] [ <command> ] [<modification>] [<miscellaneous>]
+
+task add 任务名 [pro:工程名] [tag:标签名或简写为+][due:到期时间] [pri:优先级] [dep:依赖任务id]
+
+[]表示可选，其中优先级有H、M、L（高中低）
+时间格式为：
+|标识|说明|
+| :-------- | -----: |
+|m|1 or 2 digit month number, eg '1', '12'|
+|M|2 digit month number, eg '01', '12'|
+|d|1 or 2 digit day of month number¸ eg '1', '12'|
+|D|2 digit day of month number, eg '01', '30'|
+|y|2 digit year, eg '12', where the century is assumed to be '20', therefore '2012'|
+|Y|4 digit year, eg '2015'|
+|h|1 or 2 digit hours, eg '1', '23'|
+|H|2 digit month hours, eg '01', '23'|
+|n|1 or 2 digit minutes, eg '1', '59'|
+|N|2 digit minutes, eg '01', '59'|
+|s|1 or 2 digit seconds, eg '1', '59'|
+|S|2 digit seconds, eg '01', '59'|
+|v|1 or 2 digit week number, eg '1', '52'|
+|V|2 digit week number, eg '01', '52'|
+|a|3-character English day name abbreviation, eg 'mon', 'tue'|
+|A|Complete English day name, eg 'monday', 'tuesday'|
+|b|3-character English month name abbreviation, eg 'jan', 'feb'|
+|B|Complete English month name, eg 'january', 'february'|
+|Everythingelse|All other format characters are taken as literals|
+
+开始 结束 删除
+task id start/done/del
+
+修改
+task id mod [命令:参数]
+比如 task 1 mod pro:test 把id为1的 工程修改为 test
+
+统计
+task sum
+task ghistory
+task calendar
+task burndown.daily
+自定义
+task默认是按任务的紧迫度来排序的，它采用了一个多项式来计算紧迫度，包括工程、标签、到期时间、优先级、依赖等参数。
+当然我们可以修改默认排序，通过修改config来自定义。
+可以按tag、project来排序，还可以修改阻塞(blocked)任务的排序属性，数值为负数时表示降低。
+如：
+
+task config urgency.user.tag.problem.coefficient 4.5 ，表示如果tag为problem，则紧迫度为4.5
+task config urgency.user.project.Home.coefficient 2.9
+task config urgency.blocked.coefficient 0.0 表示有阻塞的task紧迫度不变
+过滤
+时间
+Show tasks I added in the last 4 days.
+$ task entry.after:today-4days list
+Show tasks I added yesterday.
+$ task entry:yesterday list
+Show tasks I added in the last hour.
+$ task entry.after:now-1hour list
+Show tasks I completed between a date range.
+$ task end.after:2015-05-01 and end.before:2015-05-31 completed
+Show tasks I completed in the last week.
+$ task end.after:today-1wk completed
+工程
+Show tasks in This project or That project.
+$ task project:This or project:That list
+More complex algebraic filters.
+$ task project:This and ( priority:H or priority:M ) list
+搜索
+Search for pattern in description and annotations:
+$ task /pattern/ list
+$ task rc.search.case.sensitive:yes /pattern/ list
+$ task rc.search.case.sensitive:no /pattern/ list

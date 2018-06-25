@@ -20,6 +20,7 @@ E               next end of whitespace-delimited word
 b               previous start of word
 B               previous start of whitespace-delimited word
 0               start of line
+|		start of line
 $               end of line
 gg              go to first line in file
 G               go to end of file
@@ -30,6 +31,9 @@ gj		move up one displayed line
 }		end of paragraph
 
 ;		repeat t/T/f/F
+
+ctrl-o		go back to last editing postion
+
 
 
 # Insertion
@@ -68,6 +72,7 @@ d{motion}       delete text that {motion} moves over
 
 :.,+21g/foo/d		delete any lines containing the string 'foo' from the current one through the next 21 lines
 :.,$v/bar/d		from here to the end of the file, delete any lines which DO NOT contain the string 'bar'
+:%s/w../&\r/gc		append a return to w**
 
 # Location List/Quickfix Window
 # The difference between Location list and quickfix list is that location list is local to current window, you can have as many location lists as windows
@@ -99,6 +104,41 @@ CTRL + W + h/k/j/l	switch to next pane(location list)
 :lne			jump to next item in location list
 
 
+# Buffer
+:bn 			jump to next buffer
+:bp 			jump to previous buffer
+:bd 			unload current buffer with confirm	
+:bd3 			unload buffer #3
+:1,3bd 			unload buffer #1, #2, #3
+:bw 			really delete the buffer file
+:bl			blast
+:b2			open buffer #2
+:buffers		show all buffers, the same as ls
+:ls 			show all buffers
+
+	
+
+# Global command
+:[range]g/pattern/command	d:delete, m:move, t:copy, s:substitute, `:help ex-cmd` to check all ex command
+:help ex-cmd 			check all ex command 
+
+# Folding
+l			unfold current fold 
+zr			unfold all methods/blocks
+zm			fold all methods/blocks 	
+zi			switch folding on or off
+za			toggle current fold open/closed
+zc			close current fold
+zR			open all folds
+zM			close all folds
+zv			expand folds to reveal cursor
+zj			move down to top of next fold
+zk			move up to bottom of previous fold
+
+
+# encrypt file
+:X			encrypt current file with password
+
 # Preceding a motion or edition with a number repeats it 'n' times
 # Examples:
 50k         moves 50 lines up
@@ -112,6 +152,7 @@ ma		sets the 'a' mark to the current location
 `a		moves to the precise location of 'a' mark
 y`a		copy(yank) to 'a' mark
 d`a		cut to 'a' mark
+:marks 		marks list
 
 # essential of vi
 https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim
@@ -157,3 +198,10 @@ zb			put the current line to the bottom of screen
 :w bar			save as 'bar'
 :$w foo			save last line to file 'foo'
 .w foo			save current line to file 'foo'
+:%s/w../&\r/gc		append a return to w**
+
+# tutorials
+1. http://blog.sina.com.cn/s/blog_46dac66f010005kw.html, 普通人的编辑利器——Vim
+1. http://arch.pconline.com.cn//pcedu/soft/gj/photo/0609/877033.html , 程序员的编辑器 - Vim
+1. vi is visual interface for short, 也就是说vi允许一次能看到一屏的文本而非一行，vi也因此得名
+1. http://blog.csdn.net/huangkangying/article/details/50506640, Vim Global Command 用法(g命令)

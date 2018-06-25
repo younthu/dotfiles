@@ -1,0 +1,28 @@
+# Displays everything in the target directory
+ls path/to/the/target/directory
+
+# Displays everything including hidden files
+ls -a
+
+# Displays all files, along with the size (with unit suffixes) and timestamp
+ls -lh 
+
+# Display files, sorted by size
+ls -S
+
+# Display directories only
+ls -d */
+
+# Display directories only, include hidden
+ls -d .*/ */
+
+# list symbol links only
+ls -la ~ | grep '\->'
+
+# 'find' way of list all symbol links
+find . -maxdepth 1 -type l -ls
+
+# ls links, directories and files, a regex way by matching the first character of line
+ls -lhaF | grep '^l'   # list links
+ls -lhaF | grep '^d'   # list directories
+ls -lhaF | grep '^-'   # list files

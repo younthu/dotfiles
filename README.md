@@ -3,7 +3,7 @@
 1. created private cheat list
 1. linked private cheat list to ~/.cheat/, `ln -s $PWD/cheatsheets ~/.cheat`
 1. replace `.vimrc` with private `.vimrc`
-1. link `.vimrc` with command ``
+1. link `.vimrc` with command `ln -sf $PWD/.vimrc ~/.vimrc`
 1. You can check symbol links with command `ls -la ~ | grep '\->'`
 
 
