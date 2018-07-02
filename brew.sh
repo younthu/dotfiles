@@ -95,3 +95,8 @@ brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# customization
+brew cask install spectacle # window size manager
+brew cask install macdown   # markdown editor
+brew cask install sourcetree # git visualized app
