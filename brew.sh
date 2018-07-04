@@ -98,7 +98,8 @@ brew cask install spectacle # window size manager
 brew cask install macdown   # markdown editor
 brew cask install sourcetree # git visualized app
 brew cask install sogouinput # sogou input
-brew install ncdu
+brew install ncdu # disk usage tool
+brew install task # taskwarrior, task management tool
 
 # Remove outdated versions from the cellar.
 brew cleanup
