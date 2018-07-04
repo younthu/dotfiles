@@ -100,6 +100,7 @@ brew cask install sourcetree # git visualized app
 brew cask install sogouinput # sogou input
 brew install ncdu # disk usage tool
 brew install task # taskwarrior, task management tool
+brew install cheat # cheatsheets tool
 
 # Remove outdated versions from the cellar.
 brew cleanup
