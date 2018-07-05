@@ -103,6 +103,11 @@ brew install task # taskwarrior, task management tool
 brew install cheat # cheatsheets tool
 brew install rbenv # ruby version manager
 
+## react native
+brew install node
+brew install watchman
+
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
