@@ -1,4 +1,4 @@
-" This is vim file for personal usage
+" This is vim file for personal(zhiyong) use
 "
 " Some tutorials
 " 1. https://github.com/spf13/spf13-vim
@@ -16,10 +16,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/andrewy/.vim/bundle/neobundle.vim/
+set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 " Required:
-call neobundle#begin(expand('/Users/andrewy/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -72,9 +72,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
-
-execute pathogen#infect()
-call pathogen#helptags()
 
 " Dsiplay incomplete commands
 set showcmd
