@@ -102,6 +102,7 @@ brew install ncdu # disk usage tool
 brew install task # taskwarrior, task management tool
 brew install cheat # cheatsheets tool
 brew install rbenv # ruby version manager
+brew cask install qq
 
 ## react native
 brew install node
