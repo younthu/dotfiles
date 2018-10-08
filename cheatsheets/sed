@@ -1,0 +1,39 @@
+# To replace all occurrences of "day" with "night" and write to stdout:
+sed 's/day/night/g' file.txt
+
+# To replace all occurrences of "day" with "night" within file.txt:
+sed -i 's/day/night/g' file.txt
+
+# To replace all occurrences of "day" with "night" on stdin:
+echo 'It is daytime' | sed 's/day/night/g'
+
+# To remove leading spaces
+sed -i -r 's/^\s+//g' file.txt
+
+# To remove empty lines and print results to stdout:
+sed '/^$/d' file.txt
+
+# To replace newlines in multiple lines
+sed ':a;N;$!ba;s/\n//g'  file.txt
+
+# sed [选项] ‘command’ 文件名称
+# 选项部分，常见选项包括-n，-e，-i，-f，-r选项。
+# command部分包括：[地址1，地址2] [函数] [参数(标记)]
+# 基本子命令
+# a, 在指定行下边插入指定行的内容。
+# i, 在指定行上边插入指定行的内容。
+# c, 把指定的行内容替换为自己需要的行内容。
+# d, 删除指定的行内容，比较简单，更容易理解。
+# y, 字符替换，可以替换多个字符，只能替换字符不能替换字符串，且不支持正则表达式，具体使用方法看例子。
+# =, 讲行号打印出来
+# r, 类似于a，也是将内容追加到指定行的后边，只不过r是将指定文件内容读取并追加到指定行下边。
+# s, 替换子命令，是平时sed使用的最多的子命令，没有之一
+
+sed ‘y/ab/AB/’ message # 把message中所有a字符替换为A符号，所有b字符替换为B符号。
+sed 's/hello/A/' file.txt    # 修改file.txt的内容然后打印到屏幕，不保存文件。
+sed '2,3s/hello/A/' file.txt    # 修改file.txt的内容然后打印到屏幕，不保存文件。
+sed -i '' 's/hello/A/' file.txt # 直接修改file.txt内容, 注意-i后面有'', disable backup 用的，要不然在mac下这个命令会抛错:bad flag in substitute command: 'e'
+sed -i.bak 's/hello/A/' file.txt # 把修改的内容保存到file.txt,同时备份原文件到file.txt.bak
+sed -i '' '1,4d' shifenzheng.data.utf8.sql # 删除1,4行的内容
+sed '1d;$d' file # 删除第一行和最后一行
+time sed -i '' '/^print/d' shifenzheng.data.utf8.sql # 删除print打头的行

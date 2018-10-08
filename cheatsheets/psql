@@ -43,3 +43,7 @@ sudo su postgres
 
 # dump table to csv
 copy news_items to '/tmp/news_items.csv' csv header;
+copy (select id, domain, urlpath from news_items) to '/tmp/news_chinese.csv' CSV HEADER; // copy some fields into table
+
+# show table definition
+\d+ news_items

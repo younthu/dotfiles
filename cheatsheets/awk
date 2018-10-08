@@ -12,3 +12,6 @@ printf '1 2 3' | awk 'BEGIN {OFS=":"}; {print $1,$2,$3}'
 
 # find all files of which name contains 'doc'. '~' means regex match , '/doc/' is the regex string. '!~' means not match
 ll | awk 'BEGIN{IGNORECASE=1} $9 ~ /doc/ {print $0}'
+
+# 查找所有第二列值为F的记录条数，分隔符为','
+awk -F ',' '$2~/F/ {count++} END {print count}' name_gender20m.2.csv
