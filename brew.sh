@@ -103,7 +103,7 @@ brew install task # taskwarrior, task management tool
 brew install cheat # cheatsheets tool
 brew install rbenv # ruby version manager
 brew install calcurse # terminal calendar, schedule event, notifications
-brew install p7zip # for zip, compress: 7za a test.7z test.txt, extraction: 7za x test.7z
+brew install p7zip # for zip, compress: 7za a test.7z test.txt, extraction: 7za x test.7z , pipe: pg_dump getnews_dev |7za a -si test.7z
 brew cask install qq
 
 ## react native
