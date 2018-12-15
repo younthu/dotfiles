@@ -47,3 +47,24 @@ copy (select id, domain, urlpath from news_items) to '/tmp/news_chinese.csv' CSV
 
 # show table definition
 \d+ news_items
+
+SELECT * FROM pg_stat_activity;
+
+PG中有一张表记录着当前有多少连接
+
+表名：pg_stat_activity
+
+查询当前连接数:
+select count(1) from pg_stat_activity;
+
+查询最大连接数
+show max_connections;
+
+最大连接数也可以在pg配置文件中配置：
+在postgresql.conf中设置：
+
+max_connections = 500
+
+
+select pg_relation_size('news_items’); # 查看表的大小
+select pg_indexes_size('news_items'); #查看表里面所有索引的大小

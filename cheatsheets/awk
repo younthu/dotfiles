@@ -15,3 +15,6 @@ ll | awk 'BEGIN{IGNORECASE=1} $9 ~ /doc/ {print $0}'
 
 # 查找所有第二列值为F的记录条数，分隔符为','
 awk -F ',' '$2~/F/ {count++} END {print count}' name_gender20m.2.csv
+
+# 查找运行状态的第一个container的id, 注意awk只接受单引号作为参数，非常奇葩的事情
+docker ps | awk 'NR==2 {print $1}'

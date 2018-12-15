@@ -1,0 +1,49 @@
+# https://gist.github.com/palkan/d89757a90cfbeb047c63
+# https://devhints.io/pry
+# https://pragmaticstudio.com/tutorials/rails-console-shortcuts-tips-tricks
+# http://railscasts.com/episodes/280-pry-with-rails?view=asciicast
+# https://github.com/pry/pry/wiki
+
+
+# show object methods and instance variables
+ls                 # All
+ls -h              # show help
+ls -g              # Globals
+ls -l              # Local vars
+ls -c              # Constants
+ls -i              # Instance vars
+ls object
+ls -m object       # show only public methods
+ls -G has_ object  # grep by name
+ls -i object       # instance variables
+show-routes        # show routes
+show-models        # show models
+show-model User    # show model User
+show-model =G password      # search model by attributes
+find-routes UsersController # Show controller routes
+show-source 		    # the same as $
+show-source -a Object       # show all monkey patchs
+$ object.method             # show method source
+$ Class#method              # show class method source
+show-doc object.method      # the same as ?
+? object.method             # show method docs
+? Class#method              # show instance method docs
+? Class.method              # show class static method docs 
+wtf?                        # Trace pf recemt exception
+app.cookies                 # App cookies
+app.flash                   # Flash message
+app.controller.params       # 
+app.session[:home]          # session variables
+app.methods.grep(/_path$/).sort
+app.root_path
+helper.pluralize(2, 'car')
+helper.random_color
+location = helper.method(:random_color).source_location
+result = `ls`
+app.post "/session", email:'fred@example.com', password: 'secret'
+rails console -e production --sandbox
+nesting                     # object directory heirachy, after cd
+help                        # show help
+pry-backtrace
+show-stack
+whereami

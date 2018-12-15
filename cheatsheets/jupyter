@@ -1,0 +1,9 @@
+http://liuchengxu.org/pelican-blog/jupyter-notebook-tips.html
+
+
+1. COMMAND + SHIFT + P, 快捷键列表
+1. ?sum() , 打印函数sum的说明文档
+1. %time, 运行cell一次所花费的时间
+1. %timeit, 执行一个语句100，000次，取最快3次的平均值
+1. %prun sum([1,2,3,4,5]), 使用%prun statement_name将会产生一个有序表格来展示在该语句中所调用的每个内部函数调用的次数，每次调用的时间与该函数累计运行的时间。
+1. !ls, 执行shell命令`ls`

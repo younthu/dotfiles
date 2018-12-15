@@ -1,0 +1,100 @@
+# List all IPv4 network files
+sudo lsof -i4
+
+# List all IPv6 network files
+sudo lsof -i6
+
+# List all open sockets
+lsof -i
+
+# List all listening ports
+lsof -Pnl +M -i4
+
+# Find which program is using the port 80
+lsof -i TCP:80
+
+# List all connections to a specific host
+lsof -i@192.168.1.5
+
+# 实例26：列出目前连接主机peida.linux上端口为：20，21，22，25，53，80相关的所有文件信息，且每隔3秒不断的执行lsof指令
+lsof -i @peida.linux:20,21,22,25,53,80  -r  3
+
+# List all processes accessing a particular file/directory
+lsof </path/to/file>
+
+# List all files open for a particular user
+lsof -u <username>
+
+# List all files/network connections a command is using
+lsof -c <command-name>
+
+# List all files a process has open
+lsof -p <pid>
+
+# List all files open mounted at /mount/point.
+# Particularly useful for finding which process(es) are using a
+# mounted USB stick or CD/DVD.
+lsof +f -- </mount/point>
+
+# See this primer: http://www.danielmiessler.com/study/lsof/
+# for a number of other useful lsof tips
+
+
+# 最重要的参数是-c, -g, -p, -i
+
+1．命令格式：
+
+lsof [参数][文件]
+
+2．命令功能：
+
+用于查看你进程开打的文件，打开文件的进程，进程打开的端口(TCP、UDP)。找回/恢复删除的文件。是十分方便的系统监视工具，因为 lsof 需要访问核心内存和各种文件，所以需要root用户执行。
+
+lsof打开的文件可以是：
+
+1.普通文件
+
+2.目录
+
+3.网络文件系统的文件
+
+4.字符或设备文件
+
+5.(函数)共享库
+
+6.管道，命名管道
+
+7.符号链接
+
+8.网络文件（例如：NFS file、网络socket，unix域名socket）
+
+9.还有其它类型的文件，等等
+
+3．命令参数：
+
+-a 列出打开文件存在的进程
+
+-c<进程名> 列出指定进程所打开的文件
+
+-g  列出GID号进程详情
+
+-d<文件号> 列出占用该文件号的进程
+
++d<目录>  列出目录下被打开的文件
+
++D<目录>  递归列出目录下被打开的文件
+
+-n<目录>  列出使用NFS的文件
+
+-i<条件>  列出符合条件的进程。（4、6、协议、:端口、 @ip ）
+
+-p<进程号> 列出指定进程号所打开的文件
+
+-u  列出UID号进程详情
+
+-h 显示帮助信息
+
+-v 显示版本信息
+
+
+参考: http://www.cnblogs.com/peida/archive/2013/02/26/2932972.html

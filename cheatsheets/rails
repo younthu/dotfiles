@@ -10,3 +10,6 @@ rake db:rollback STEP=1
 
 # run ruby code in rails env
 rails runner "User.create!(email: 'test@ruby.com', password: 'password')"
+
+# 创建API项目, 跳过测试(-T), 用postgresql做数据库(-d)
+Rails new my-app-api --api -T -d postgresql
