@@ -117,3 +117,7 @@ brew install watchman
 # Remove outdated versions from the cellar.
 brew cleanup
 
+# Q&A
+# libreadline not found issue, please link to high version to lower version, brew info readline to check readline verion
+# ln -s /usr/local/opt/readline/lib/libreadline.8.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+
