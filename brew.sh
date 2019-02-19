@@ -105,8 +105,8 @@ brew install rbenv # ruby version manager
 brew install calcurse # terminal calendar, schedule event, notifications
 brew install p7zip # for zip, compress: 7za a test.7z test.txt, extraction: 7za x test.7z , pipe: pg_dump getnews_dev |7za a -si test.7z
 brew cask install qq
-brew install asciinema # terminal screen recording as svg
-npm install -g svg-term-cli
+# brew install asciinema # terminal screen recording as svg
+# npm install -g svg-term-cli
 brew install fzf # 命令行模糊搜索工具，Ctrl + T开启搜索
 
 ## react native
