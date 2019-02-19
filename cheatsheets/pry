@@ -3,6 +3,7 @@
 # https://pragmaticstudio.com/tutorials/rails-console-shortcuts-tips-tricks
 # http://railscasts.com/episodes/280-pry-with-rails?view=asciicast
 # https://github.com/pry/pry/wiki
+# http://ruby-doc.org/core-2.0.0/doc/globals_rdoc.html
 
 
 # show object methods and instance variables
@@ -25,25 +26,46 @@ show-source 		    # the same as $
 show-source -a Object       # show all monkey patchs
 $ object.method             # show method source
 $ Class#method              # show class method source
+$:                          # load paths
 show-doc object.method      # the same as ?
 ? object.method             # show method docs
 ? Class#method              # show instance method docs
 ? Class.method              # show class static method docs 
+$!	latest error message
+$@	location of error
+$_	string last read by gets
+$.	line number last read by interpreter
+$&	string last matched by regexp
+$~	the last regexp match, as an array of subexpressions
+$n	the nth subexpression in the last match (same as $~[n])
+$=	case-insensitivity flag
+$/	input record separator
+$\	output record separator
+$0	the name of the ruby script file
+$*	the command line arguments
+$$	interpreter's process ID
+$?	exit status of last executed child process
 wtf?                        # Trace pf recemt exception
 app.cookies                 # App cookies
 app.flash                   # Flash message
 app.controller.params       # 
 app.session[:home]          # session variables
 app.methods.grep(/_path$/).sort
+app.methods.grep /_path/
 app.root_path
+app.get(app.root_path)
 helper.pluralize(2, 'car')
 helper.random_color
 location = helper.method(:random_color).source_location
 result = `ls`
 app.post "/session", email:'fred@example.com', password: 'secret'
+app.users_path              # show path of users
 rails console -e production --sandbox
 nesting                     # object directory heirachy, after cd
 help                        # show help
 pry-backtrace
 show-stack
 whereami
+User.all.map(&:name)
+local_variables
+instance_variables
