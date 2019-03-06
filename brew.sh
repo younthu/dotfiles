@@ -108,6 +108,7 @@ brew cask install qq
 # brew install asciinema # terminal screen recording as svg
 # npm install -g svg-term-cli
 brew install fzf # 命令行模糊搜索工具，Ctrl + T开启搜索
+brew install cloc # 代码行数统计工具
 
 ## react native
 brew install node
