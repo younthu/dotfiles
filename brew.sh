@@ -111,6 +111,12 @@ brew install fzf # 命令行模糊搜索工具，Ctrl + T开启搜索
 brew install cloc # 代码行数统计工具
 brew install socat # nc 加强版
 
+## Amusement
+
+# https://zhuanlan.zhihu.com/p/47579886
+brew install lolcat # rainbow style cat, please try: figlet I Love You | lolcat
+brew install figlet # very big characters, does not work for Chinese Characters
+
 ## react native
 brew install node
 brew install watchman
