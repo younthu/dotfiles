@@ -46,3 +46,10 @@ sed -i '' '1,4d' shifenzheng.data.utf8.sql # 删除1,4行的内容
 sed '1d;$d' file # 删除第一行和最后一行
 time sed -i '' '/^print/d' shifenzheng.data.utf8.sql # 删除print打头的行
 sed -n 10p file.txt #打印第10行的内容, -n表示不输出原文件，只输出命令执行后的结果, 动作p将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+
+# Mac下面插入新航很奇葩, 要用\\然后加换行莱插入内容, 下面是把"gem 'acts-as-taggable-on'"加入到带":development"的行前面，每个匹配的行都做
+# 还要注意命令要用双引号括起来，要不然会抛错，mac下面sed就是这么奇怪.
+sed -i '' "/:development/ i\\
+gem 'acts-as-taggable-on'
+" Gemfile
+
