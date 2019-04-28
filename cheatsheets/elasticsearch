@@ -1,0 +1,5 @@
+# ES默认页面 
+http://localhost:9200
+
+# 查看磁盘使用情况
+curl -XGET "http://localhost:9200/_cat/shards?v"

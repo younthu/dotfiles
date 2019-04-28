@@ -69,6 +69,7 @@ d{motion}       delete text that {motion} moves over
 :%s/foo/bar/g		replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
 :%s/foo/bar/gc		ask to manually confirm (`c` flag) each replacement 
 :127,215 s/foo/bar	substitute the first occurence of 'foo' into 'bar on each line between 127 and 215
+:127,215 s/\d\+/bar	substitute the first occurence of numbers into 'bar on each line between 127 and 215
 
 :.,+21g/foo/d		delete any lines containing the string 'foo' from the current one through the next 21 lines
 :.,$v/bar/d		from here to the end of the file, delete any lines which DO NOT contain the string 'bar'
