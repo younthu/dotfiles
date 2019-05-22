@@ -1,0 +1,73 @@
+# To connect to a database
+mysql -h localhost -u root -p
+
+# To connect to a database via tcp
+mysql -h localhost -u root --protocol=tcp -p 
+
+# To backup all databases
+mysqldump --all-databases --all-routines -u root -p > ~/fulldump.sql
+
+# To restore all databases
+mysql -u root -p  < ~/fulldump.sql
+
+# To create a database in utf8 charset
+CREATE DATABASE owa CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+# To add a user and give rights on the given database
+GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+# To list the privileges granted to the account that you are using to connect to the server. Any of the 3 statements will work. 
+SHOW GRANTS FOR CURRENT_USER();
+SHOW GRANTS;
+SHOW GRANTS FOR CURRENT_USER;
+
+# Basic SELECT Statement
+SELECT * FROM tbl_name;
+
+# Basic INSERT Statement
+INSERT INTO tbl_name (col1,col2) VALUES(15,col1*2);
+
+# Basic UPDATE Statement
+UPDATE tbl_name SET col1 = "example";
+
+# Basic DELETE Statement
+DELETE FROM tbl_name WHERE user = 'jcole';
+
+# To check stored procedure
+SHOW PROCEDURE STATUS;
+
+# To check stored function
+SHOW FUNCTION STATUS;
+
+# 查看表结构
+desc table_name;
+
+# 查看所有用户授权
+select host,user,plugin from mysql.user
+
+# 修改mysql让其使用默认的native_password方式
+vim my.cnf
+[mysqld]
+default_authentication_plugin=mysql_native_password
+
+# 查看是否允许外部链接
+mysqld --verbose --help | grep bind-address
+
+# 查看mysql 版本
+select version();
+show variables like 'default_authentication_plugin';
+
+
+# mysql 8 native password authentication的问题
+alter user root@'%' identified with mysql_native_password by 'example';
+flush privileges;
+
+# mysql docker 数据目录和初始化脚本目录加载, 注意，改脚本只在第一次创建container的时候有用，如果data目录有数据了，初始化脚本就不会执行
+      volumes:
+         - /home/user/db/mysql/data:/var/lib/mysql
+         - /home/user/db/mysql/init:/docker-entrypoint-initdb.d/:ro
+# 或者通过变量MYSQL_DATABASE来初始化数据库，/docker-entrypoint-initdb.d/下面的脚本默认会在该数据库下执行。注意，改脚本只在第一次创建container的时候有用，如果data目录有数据了则不会重复创建database。
+environment:
+  MYSQL_DATABASE=metabase
+
+

@@ -67,4 +67,5 @@ max_connections = 500
 
 
 select pg_relation_size('news_items’); # 查看表的大小
-select pg_indexes_size('news_items'); #查看表里面所有索引的大小
+select pg_indexes_size('news_items');  # 查看表里面所有索引的大小
+select pg_database_size('dealglobe');  # 查看数据库的大小

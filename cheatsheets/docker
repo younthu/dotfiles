@@ -37,3 +37,19 @@ docker run -it --rm -v "./:/root/myserver/" ubuntu
 # Run ubuntu with ruby
 docker run --rm -it -v "$PWD:/var/www" -p 6666:3000 drecom/ubuntu-ruby:2.5.1
 
+# 打印docker日志最后1000行
+docker logs --tail 1000 <docker id>
+
+# 查看容器加载的目录
+docker inspect <container-id>
+
+# 查看所有的Volume
+docker volume ls
+
+# 查看docker磁盘使用情况 
+docker system df
+
+# 清理磁盘
+docker system prune
+docker system prune --volumes
+docker system prune -a

@@ -27,3 +27,12 @@ Example:
 7       bad cli arguments
 8       not enough memory for operation
 255     process was interrupted
+
+# 压缩目录
+7z a -r hanting ./mysql
+
+# 解压缩到指定目录, 解压完以后和上面压缩时目录结构一模一样
+ 7z x hanting.7z -ohanting/
+
+# 解压到当前目录,直接以当前目录为顶层目录把7z文件内容展开
+7z x hangting.7z -o./

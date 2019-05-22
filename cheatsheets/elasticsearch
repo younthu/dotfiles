@@ -1,5 +1,113 @@
+# 基本概念
+term: 一个被索引的精确的值
+analysis: 把字符串转换为terms的过程，也就是分词
+document: 一个json文档，存储在es中
+shards(分片): 一个索引可以存储超出单个结点硬件限制的大量数据。比如，一个具有10亿文档的索引占据1TB的磁盘空间，而任一节点都没有这样大的磁盘空间；或者单个节点处理搜索请求，响应太慢。为了解决这个问题，Elasticsearch提供了将索引划分成多份的能力，这些份就叫做分片。
+replicas(复制): 在一个网络/云的环境里，失败随时都可能发生，在某个分片/节点不知怎么的就处于离线状态，或者由于任何原因消失了，这种情况下，有一个故障转移机制是非 常有用并且是强烈推荐的。为此目的，Elasticsearch允许你创建分片的一份或多份拷贝，这些拷贝叫做复制分片，或者直接叫复制。
+segment(段): Lucene把每次生成的倒排索引叫做一个段(segment). 注意‘每次’,所有新的索引都是先进buffer,再写入磁盘。 每次buffer里面的索引写入到磁盘的时候就会新生成一个segment。同时那个内存里的buffer是一个壳建设的segment,实现索引实时更新的功能. 小的segment还可能被merge成大的segment,这个过程是es自动维护的。
+
+# ES 监控接口
+GET /_nodes/stats
+GET /_cluster/stats
+GET /index_name/_stats
+GET /_cluster/health
+GET /_cluster/pending_tasks
+
+状态说明
+green : 所有主分片和从分片都可用
+yellow: 所有主分片可用，但存在不可用的从分片
+red: 存在不可用的主要分片
+
+
+# 第三方监控
+Bigdesk
+Elasticsearch-HQ
+ElasticHD
+Datadog
+XPack Monitoring(前Marvel)
+
 # ES默认页面 
 http://localhost:9200
 
+# 带密码访问
+curl http://elastic:changeme@localhost:9200/
+
 # 查看磁盘使用情况
 curl -XGET "http://localhost:9200/_cat/shards?v"
+
+#查看节点Index信息
+curl -X GET 'http://localhost:9200/_cat/indices?v'
+
+# 列出每个Index所包含的Type
+curl 'localhost:9200/_mapping?pretty=true'
+
+# 新建叫做weather的index
+curl -X PUT 'localhost:9200/weather'
+
+# 删除索引
+curl -X DELETE 'localhost:9200/weather'
+
+# 查看记录1
+curl 'localhost:9200/accounts/person/1?pretty=true'
+
+# 删除记录
+curl -X DELETE 'localhost:9200/accounts/person/1'
+
+# 返回所有记录, _search操作默认返回所有记录, 返回结果里面'took'表示该操作的耗时, es默认一次返回10条记录，可以通过size字段来指定返回多少条记录
+curl 'localhost:9200/accounts/person/_search?size=1'
+
+# 查找desc字段包含‘软件’的记录
+curl 'http://elastic:changeme@localhost:9200/accounts/person/_search?q=desc:软件' 
+
+或者用Query DSL:
+curl 'localhost:9200/accounts/person/_search'  -d '
+{
+  "query" : { "match" : { "desc" : "软件" }},
+  "size"  : 10,
+  "from"  : 1 #指定位移
+}'
+
+# 如果有多个搜索关键字， Elastic 认为它们是or关系。下面指令搜索 '软件' or '系统'
+curl 'localhost:9200/accounts/person/_search'  -d '
+{
+  "query" : { "match" : { "desc" : "软件 系统" }}
+}'
+
+
+# and 操作, 查找'软件' and '系统'， bool操作见https://www.elastic.co/guide/en/elasticsearch/reference/5.5/query-dsl-bool-query.html
+curl 'localhost:9200/accounts/person/_search'  -d '
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "desc": "软件" } },
+        { "match": { "desc": "系统" } }
+      ]
+    }
+  }
+}'
+
+# In 查询
+curl 'http://elastic:changeme@localhost:9200/platform-procedures/procedure/_search'  -d '
+{
+  "query" : { "constant_score" : {"filter":{"terms":{ "news_country" : ["cn", "us"] }}}},
+  "size"  : 10,
+}'
+
+# query 和 filter 一起使用的话，filter 会先执行，看本文下面的：多搜索条件组合查询
+官网文档：https://www.elastic.co/guide/en/elasticsearch/guide/current/_queries_and_filters.html
+从搜索结果上看：
+filter，只查询出搜索条件的数据，不计算相关度分数
+query，查询出搜索条件的数据，并计算相关度分数，按照分数进行倒序排序
+从性能上看：
+filter（性能更好，无排序），无需计算相关度分数，也就无需排序，内置的自动缓存最常使用查询结果的数据
+缓存的东西不是文档内容，而是 bitset，具体看：https://www.elastic.co/guide/en/elasticsearch/guide/2.x/_finding_exact_values.html#_internal_filter_operation
+query（性能较差，有排序），要计算相关度分数，按照分数进行倒序排序，没有缓存结果的功能
+
+
+
+# 阮一峰博客: http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html
+# Elasticsearch架构原理: https://www.jianshu.com/p/5b88e95a9e80?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
+# 
+#
+# ElasticSearch优化整理: https://www.jianshu.com/p/45a15ca1114f?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
