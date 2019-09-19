@@ -1,0 +1,57 @@
+# 参考https://ihower.tw/rails/activesupport.html
+
+# to_param
+7.to_param # "7"
+[0,true,String].to_param # "0/true/String"
+
+# to_query, 该方法会调用对象的to_param方法，所以可以通过重写to_param方法来自定义to_query
+account.to_query('company[name]')                   # "company%5Bname%5D=Johnson+%26+Johnson"
+[3.4, -45.6].to_query('sample')                     # "sample%5B%5D=3.4&sample%5B%5D=-45.6"
+{:c => 3, :b => 2, :a => 1}.to_query                # => "a=1&b=2&c=3"
+{:id => 89, :name => "John Smith"}.to_query('user') # => "user%5Bid%5D=89&user%5Bname%5D=John+Smith"
+
+# class_attribute, cattr_reader, cattr_writer, cattr_accessor
+class A
+  class_attribute :x
+  # Generates class methods to access @@emulate_booleans.
+  cattr_accessor :emulate_booleans
+  self.emulate_booleans = true
+end
+
+# inquiry, 将字符串转型为StringInquirer
+Rails.env.production? # 等同於 Rails.env == "production"
+"production".inquiry.production? # => true
+"active".inquiry.inactive?       # => false
+
+# Key-based Interpolation
+"I say %{foo}" % {:foo => "wadus"}          # => "I say wadus"
+"I say %{woo}" % {:foo => "wadus"}          # => KeyError
+
+# pluralize, singularize
+"table".pluralize     # => "tables"
+"ruby".pluralize      # => "rubies"
+"equipment".pluralize # => "equipment"
+
+"tables".singularize    # => "table"
+"rubies".singularize    # => "ruby"
+"equipment".singularize # => "equipment"
+
+# Camelize/underscore, 一对对立的操作
+"product".camelize    # => "Product"
+"admin_user".camelize # => "AdminUser"
+"backoffice/session".camelize # => "Backoffice::Session" # '/' 转换为"::"
+
+"Product".underscore   # => "product"
+"AdminUser".underscore # => "admin_user"
+"Backoffice::Session".underscore # => "backoffice/session"
+
+# titleize/dasherize
+"alice in wonderland".titleize # => "Alice In Wonderland"
+"fermat's enigma".titleize     # => "Fermat's Enigma"
+
+"name".dasherize         # => "name"
+"contact_data".dasherize # => "contact-data"
+
+
+# index_by, 可以幫我們將集合元素以指定的欄位做為鍵值整理成Hash
+invoices.index_by(&:number)  # => {'2009-032' => <Invoice ...>, '2009-008' => <Invoice ...>, ...}

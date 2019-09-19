@@ -1,0 +1,32 @@
+# 检测某对象是否callable
+type(str)     # function
+callable(str) # True
+
+# 让对象callable, 这可以用来做装饰器
+def __call__(self):
+   print("Hello, __call__")
+
+# List IPython magic commands
+%lsmagic
+%env,                  #列出所有变量
+%env OMP_NUM_THREADS=4 #设置环境变量
+
+%run ./test.py         #运行python脚本
+%load ./test.py        # 加载python脚本
+
+%store data            # 保存跨notebook的变量
+%store -r data         # 读取跨notebook的变量
+%who                   # 列出所有的的global variables
+%who str               # 列出所有str类型的全局变量
+
+%%time                 #放在cell的头部，计算该cell运行的耗时
+%timeit numpy.random.normal(size=100) # 统计某命令所耗时间
+
+%pdb
+pick_and_take()        #下断点，调试
+
+%%bash                 # 单元格设置为shell单元格
+%%ruby                 # 单元格设置为ruby单元格, 里面写ruby代码
+%%python2
+%%python3
+

@@ -1,0 +1,10 @@
+# 设置tag
+news.tag_list_on(:news_type).add("情报") # 给news添加情报标签
+news.news_type_list = ["情报"] # 给news设置情报标签
+
+# ActsAsTaggableOn::Tag.find_or_create有bug，在有同名但是tag_type为空的记录是新的tag会插不进去
+        if tag_obj = ActsAsTaggableOn::Tag.find_by(name: t) # 这地方找出同名的，否则else里面的那句会返回一个id为空的tag，导致后续的数据标签打不上去
+          tag_items << tag_obj
+        else
+            tag_items << ActsAsTaggableOn::Tag.find_or_create_by!(tag_type: :news, name: t.strip) unless t == "易界" #这个在有空tag_type的同名tag是会返回一个无效的tag(id为nil)
+        end

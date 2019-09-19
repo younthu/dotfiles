@@ -1,0 +1,57 @@
+# safe operator
+params&.[](:user)
+
+# string trim
+"aa ".strip() # "aa"
+
+# range to array
+[*(1..5)]  #[1,2,3,4,5]
+
+# string to array
+"123456".chars # [1,2,3,4,5,6]
+
+# array
+[1,2,3,4].reverse
+[1,2,3,4].slice(1,2) # [2,3]
+[1,2,3,4].zip("万千百十".chars).flatten.join # "1万2千3百4十"
+
+# 字符串格式化
+"#{'%.1f' % 123.45}"  # 精度，一位小数点, 123.4
+
+# 取整
+z = 1/3
+z.round    #=> 0
+z.round(3) #=> 0.333
+z.round(5) #=> 0.33333
+
+# csv
+file_name = args[:file_name]
+csv = File.read(file_name)
+intels = CSV.parse(csv, headers:true)
+intels.each do {|row| ...}
+
+or 
+
+require 'csv'
+CSV.read("#{Dir.pwd}/favorite_foods.csv")
+
+or 
+
+CSV.foreach("animals.csv") do |row|
+  puts 'dogs are cool' if row[0] == 'dog'
+  puts "your animal is a #{row[0]}"
+end
+
+# json
+require "json"
+file = File.open "/path/to/your/file.json"
+data = JSON.load file
+file.close
+
+or 
+
+json_str = File.read "/path/to/your/file.json"
+data = JSON.parse json_str
+
+# 解析带逗号的数字
+"1,112".delete(',').to_i

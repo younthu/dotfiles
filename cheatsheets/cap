@@ -1,0 +1,5 @@
+# 上传单个文件
+cap preprod deploy:upload FILES=app/assets/javascripts/responsive/app_h5/news.js
+
+# 重启服务器, touch tmp/restart.txt
+cap production deploy:restart

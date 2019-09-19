@@ -19,3 +19,42 @@ Rails new my-app-api --api -T -d postgresql
 
 # 可以用runner直接跑console里面的脚本
 rails runner -e development 'Platform::Procedure.where("created_at > ?", 1.day.ago).destroy_all'
+
+# 直接渲染views/下指定目录的指定文件
+render "home/cn.privacy"
+
+# 跳过模板直接渲染视图文件
+render layout:false
+
+# 域名判断
+request.host.include?('mergerintel')
+
+# 渲染json，带http status code
+render json: {message: "账号无法登陆，请联系客服XXXXXXXXXXX"}, status: 401
+
+# 同时定义class, member method, active_support扩展
+mattr_accessor :metho1 # Class.method1, Class.new.method1
+
+# 继承自一个自定义字符串类
+class DeviseController < Devise.parent_controller.constantize
+
+# 查看父类
+DeviseController.ancestors
+DeviseController.ancestors.include? ApplicationController
+
+# <a> with delete 
+1. link_to "delete", "foobar/delete", :method => 'delete'
+或者
+<a href="foobar/delete" data-method="delete" rel="nofollow">delete</a>
+2. require ujs
+  1. 在application.js里面 //= require jquery_ujs
+  2. 或者在erb里面, <%= javascript_include_tag 'jquery_ujs' %>
+
+# 查找对象
+user = User.find 9884
+users = User.find 9884,9885
+
+# mailers preview路径
+http://localhost:3000/rails/mailers
+http://localhost:3000/rails/info/routes  # 查看所有routes,不包含magic routes
+

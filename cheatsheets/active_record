@@ -1,0 +1,46 @@
+# find element(s)
+u = User.find 9884
+users = User.find 9884,9885
+
+# pluck, db level retrieving
+User.pluck(:id,:email)
+User.find(9884,9885).pluck(:id, :email)
+Person.distinct.pluck(:role)
+
+# collect, ruby level collecting
+User.collect(&:name)
+User.find(9884,9885).collect(&:name)
+
+# find_by_sql, return parsed ActiveRecord object
+users = User.find_by_sql("select * from users")
+
+# limit
+User.limit(5)
+User.limit(5).offset(3)
+User.offset(3).limit(5)
+
+#select, 仅取出需要的column
+User.offset(3).limit(5).select(:email)
+
+# find_each批处理, 默认每次取1000
+User.find_each(:conditions => "age > 21", batch_size: 2000, start: 1000, finish: 10000) do |u| xxx;end
+
+# find_in_batches, 每次去一组
+User.find_in_batches(batch_size: 1000, start:1000, finish:2000) do | group| group.map(&:name) end
+
+#increment, decrement, 操作但是不save,  increment!, decrement! 直接操作并保持到数据库
+User.first.increment!(:comments_count)
+User.increment_count(:comments_count,user_id)
+
+# toggle, toggle!, 操作bool
+
+# 指定表名和主键
+class Category < ApplicationRecord
+  establish_connection(:getnews)
+  self.table_name = "your_table_name"
+  self.primary_key = "your_primary_key_name" #如果你的主键不是id
+end
+
+# 基于scope的scope
+has_many :sectors, through: :sector_of_interests, source: :sector
+has_many :industries, ->{distinct}, through: :sectors

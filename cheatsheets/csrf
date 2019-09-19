@@ -1,0 +1,10 @@
+# 生成CSRF token
+在header 里面加入 <%f= csrf_meta_tag %> 代码即会自动生成X-CSRF_PARAM和X-CSRF-TOKEN
+
+# ajax 表单提交时默认不会把x-csrf-token提交上去，会导致invalid-authenticity, 可以有两种方法解决这个问题
+1. 利用rails-ujs, 这个库会自动把csrf标记插入到ajax请求里面.也就是引入 jquery_ujs, <%= javascript_include_tag 'jquery_ujs' %>
+2. $.ajaxSetup({  
+  beforeSend: function(xhr) {  
+    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));  
+  }  
+});  

@@ -39,6 +39,9 @@ lsof +f -- </mount/point>
 # See this primer: http://www.danielmiessler.com/study/lsof/
 # for a number of other useful lsof tips
 
+# 列出所有已经删除的文件
+sudo lsof -nP | grep '(deleted)'
+
 
 # 最重要的参数是-c, -g, -p, -i
 
@@ -98,3 +101,4 @@ lsof打开的文件可以是：
 
 
 参考: http://www.cnblogs.com/peida/archive/2013/02/26/2932972.html
+

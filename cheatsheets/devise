@@ -1,0 +1,32 @@
+# 验证用户
+before_acion :authenticate_user!
+
+# 当前用户
+current_user
+
+# 对应的session
+user_session
+
+#用户是否登录
+user_signed_in?
+
+# 如果Devise定义的model叫Member而不是User, 那么辅助方法会变成下面的形式:
+before_action :authenticate_member!
+member_signed_in?
+current_member
+member_session
+
+# 登录，登出用户
+sign_in :user, @user
+sign_in @user
+
+sign_out 
+sign_out :user
+sign_out @user
+sign_out_all_scopes
+
+# 登录后redirect地址, 通过在controller里面复写after_sign_in_path_for来修改跳转地址
+after_sign_in_path_for
+
+# 跳转地址获取
+stored_location_for

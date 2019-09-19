@@ -1,0 +1,10 @@
+# rails 3.1之后可以用has_secure_password替代devise, 参考: https://blog.csdn.net/lissdy/article/details/73779686
+# railscasts, http://railscasts.com/episodes/270-authentication-in-rails-3-1?view=asciicast
+rails g model user username:string password_digest:string
+has_secure_password
+include ActiveModel::SecurePassword
+has_secure_password :validations => false # 不强制要求填password
+
+# 查看模块验证规则
+User.validators
+User.validators_on(:password)

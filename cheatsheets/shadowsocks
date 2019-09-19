@@ -1,0 +1,6 @@
+# Shadowsocks 服务器搭建
+1. sudo apt update
+2. sudo apt install python-pip
+3. sudo apt install shadowsocks
+4. sudo ssserver -p 8989 -k password -m aes-256-cfb -d start
+5. netstat -tln | grep 8989 #检查端口是否正常监听

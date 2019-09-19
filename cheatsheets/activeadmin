@@ -1,0 +1,6 @@
+rails g active_admin:install --skip-users
+rails g active_admin:install User
+rails g active_admin:install     # create AdminUser by default with Devise
+
+
+rails g active_admin:resource MyModel

@@ -1,0 +1,2 @@
+# 显示link_to
+helper.link_to "delete", "foobar/delete", :method => 'delete' # <a href="foobar/delete" data-method="delete" rel="nofollow">delete</a>

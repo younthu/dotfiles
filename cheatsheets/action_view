@@ -1,0 +1,12 @@
+# Action View Helpers方法，https://ihower.tw/rails/actionview-helpers.html
+
+# Rails console 里访问helpe
+helper
+ls helper
+
+# Template中可以直接调用helper的方法
+
+# 在Controller或者model中调用
+ApplicationController.helpers
+
+

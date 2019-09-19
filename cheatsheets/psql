@@ -66,6 +66,15 @@ show max_connections;
 max_connections = 500
 
 
+```sql
 select pg_relation_size('news_items’); # 查看表的大小
 select pg_indexes_size('news_items');  # 查看表里面所有索引的大小
 select pg_database_size('dealglobe');  # 查看数据库的大小
+```
+
+# 修复id_seq不一致的问题
+select setval('sector_of_interests_id_seq', 157015);
+select id from sector_of_interests order by id desc limit 1;
+
+# 按表大小排序
+select table_name, pg_relation_size(quote_ident(table_name)) from information_schema.tables where table_schema = 'public' order by 2

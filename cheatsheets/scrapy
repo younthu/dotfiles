@@ -38,7 +38,9 @@ response.xpath('//*[@id="kkpager"]/div/span/a/@href').extract()
 response.xpath('//*[@id="kkpager"]/div/span/a/@href').extract_first()
 response.xpath('string(//*[@id="kkpager"]/div)').extract()           # 提取第一个匹配节点下所有文本(包括子节点), 只返回第一个匹配的node下面的文本
 response.xpath('//*[@id="kkpager"]/div/child::text()').extract()     # 提取所有匹配的节点
-response.css('.shout').xpath('./time/@datetime').extract()         # 利用css来筛选特定class的元素
+response.css('.shout').xpath('./time/@datetime').extract()           # 利用css来筛选特定class的元素
+"".join(response.css('#article div.path *::text').extract())                                 # 获取某div的innerText
+"".join(response.xpath("//div[@id='article']/div[@class='path']//child::text()").extract())  # xpath 方法获取某div的innerText,效果和上面的css效果一样
 
 # 在chrome inspect下测试xpath
 $x('//*[@id="kkpager"]/div/span/a/@href')
