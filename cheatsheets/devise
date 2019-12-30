@@ -1,3 +1,6 @@
+# Cheatsheet
+https://devhints.io/devise
+
 # 验证用户
 before_acion :authenticate_user!
 

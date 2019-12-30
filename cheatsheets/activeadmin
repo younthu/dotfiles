@@ -4,3 +4,7 @@ rails g active_admin:install     # create AdminUser by default with Devise
 
 
 rails g active_admin:resource MyModel
+
+preserve_default_filters!
+filter :developer
+filter :max_likes, label: "Maximum Likes"
