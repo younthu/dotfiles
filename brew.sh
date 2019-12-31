@@ -98,6 +98,7 @@ brew cask install spectacle # window size manager
 brew cask install macdown   # markdown editor
 brew cask install sourcetree # git visualized app
 brew cask install sogouinput # sogou input
+brew cask install iterm2 # iterm2 app
 brew install ncdu # disk usage tool
 brew install task # taskwarrior, task management tool
 brew install cheat # cheatsheets tool
