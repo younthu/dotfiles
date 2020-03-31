@@ -17,3 +17,14 @@ python -mjson.tool
 
 # 读取命令行
 sys.stdin.readlines();
+
+# 时间操作
+from datetime import datetime, timedelta
+import calendar
+from dateutil.relativedelta import relativedelta
+
+dt1 = datetime(2020,01, 1)
+dt2 = datetime(2020, 2, calendar.monthrange(2020,2)[1])  # 2020年2月的最后一天, 闰月, 2月29
+dt3 = dt2 + timedelta(days=12)                            # timedelta 支持days, 不支持months, 也不支持years
+dt4 = dt2 + relativedelta(months=12)                      # relativedelta支持months, 2月 28
+dt5 = dt2.replace(days=1)                                 #当月第一天
