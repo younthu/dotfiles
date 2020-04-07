@@ -144,6 +144,7 @@ brew install lolcat # rainbow style cat, please try: figlet I Love You | lolcat
 brew install figlet # very big characters, does not work for Chinese Characters
 
 ## react native
+brew install yarn
 brew install node
 brew install watchman
 
