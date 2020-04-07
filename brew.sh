@@ -133,6 +133,9 @@ brew install fzf # 命令行模糊搜索工具，Ctrl + T开启搜索
 brew install cloc # 代码行数统计工具
 brew install socat # nc 加强版
 brew install autojump # zsh autojump, enable autojump plugin in zsh and put line into .zshrc: [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+echo "[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh" >> ~/.zshrc
+
+brew install postgresql
 
 ## Amusement
 
