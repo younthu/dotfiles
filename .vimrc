@@ -10,68 +10,6 @@ syntax on
 set encoding=utf-8
 set number
 
-"NeoBundle Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-"NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'easymotion/vim-easymotion' " try ',,s' to search a char or ',,w' to show all those beginning of words, ',,b' to show previous words
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'vim-scripts/taglist.vim'
-
-" for python
-NeoBundle 'klen/python-mode'
-
-" max line lenght to 250
-let g:pymode_options_max_line_length=250
-
-" NeoBundle 'davidhalter/jedi-vim'
-
-" Snippets support, utlisnips is engine, vim-snippets is snippets
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'epilande/vim-react-snippets'
-
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<enter>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" You can specify revision/branch/tag.
-" NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Famous YouCompleteMe
-NeoBundle 'Valloric/YouCompleteMe'
-
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
 
 " Dsiplay incomplete commands
 set showcmd
@@ -102,13 +40,6 @@ set title
 " Change <Leader> key to ','
 let mapleader = ","
 
-
-
-" YCM python3 support
-let g:ycm_python_binary_path = 'python'
-
-" YCM jump to definition
-map gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Save buffer with <Leader> + S. note: Ctrl + S will suspend the terminal,
 " Command key not work as well, https://stackoverflow.com/questions/33060569/mapping-command-s-to-w-in-vim
