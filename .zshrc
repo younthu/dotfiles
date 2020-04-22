@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/andrewy/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 export LC_CTYPE="UTF-8"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -167,20 +167,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # display my famous saying
 echo '''
-	1. 每天早上做规划，做完规划再开始干活
-        2. 事情分出去，一个人精力有限，不能所有事情都自己做
-        3. 任何任务要足够小，能快速执行，要方便验收
-        4. 长远规划非常重要
-        5. 每半年检查一下自己目标，及时调整
-        6. 写日志，运营微博，影响力非常重要。
-	7. 避免亲力亲为，除非出了很大的问题。最重要的是把控方向，而不是深入细节。
-	8. 每个月1号列出哪些事情不该自己做。然后把不该自己做的事情找人帮忙做。
-	9. 同时参与的项目不能操过2个，其它的都得想办法分出去给别人做。
-	10. 别看fuliba和qiushibaike
-	11. 关掉微信
-	12. 切忌同行相轻。人总是会同行相轻, 切忌切忌
 
-	
 '''
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
