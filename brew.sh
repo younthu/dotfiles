@@ -136,6 +136,7 @@ brew install autojump # zsh autojump, enable autojump plugin in zsh and put line
 echo "[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh" >> ~/.zshrc
 
 brew install postgresql
+brew install jq # 命令行json解析工具, 用于每日一句
 
 ## Amusement
 
