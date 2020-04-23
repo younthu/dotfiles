@@ -109,46 +109,17 @@ alias ticknow="ruby -e 'p Time.now.to_i'" # ticks start from 1970
 
 export HOMEBREW_GITHUB_API_TOKEN="d1281fca218612dc1d7047ddfb1efeb9b36353e8"
 
-export NVM_DIR="/Users/andrewy/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # logo and some sentence
 chuck_cow
+# say a sentence randomly
+echo "*********毒鸡汤**********"
+curl -s http://rainbow.ilibrary.me/api/rainbow/random | jq '.sentence'
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/andrewy/.rvm/bin:/Users/andrewy/.vimpkg/bin:$PATH"
-
-# android sdk
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
-export ANDROID_NDK=/Users/andrewy/android-ndk/android-ndk-r10e
-
-# groovy
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-
-# CUDA, http://docs.nvidia.com/cuda/cuda-installation-guide-mac-os-x/#axzz4gBuiCr7c
-export PATH=/Developer/NVIDIA/CUDA-8.0/bin${PATH:+:${PATH}}
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/andrewy/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/andrewy/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/andrewy/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/andrewy/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-# added by Anaconda3 4.3.1 installer
-export PATH="/Users/andrewy/anaconda/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:~/.rvm/bin:~/.vimpkg/bin:$PATH"
 
 # for Jupyter notebook, https://github.com/jupyter/notebook/issues/2438
 BROWSER=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 export BROWSER
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-
-# for google chromium source building,depot_tools
-export PATH=$PATH:/Users/andrewy/sourcecode/github/depot_tools
 
 # proxy for temrinal, shadowsocks + polipo
 alias hp="http_proxy=http://localhost:8123 https_proxy=http://localhost:8123" 
@@ -164,11 +135,6 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 PATH="/usr/local/sbin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# display my famous saying
-echo '''
-
-'''
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
