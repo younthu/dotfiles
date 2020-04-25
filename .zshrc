@@ -113,7 +113,8 @@ export HOMEBREW_GITHUB_API_TOKEN="d1281fca218612dc1d7047ddfb1efeb9b36353e8"
 chuck_cow
 # say a sentence randomly
 echo "*********毒鸡汤**********"
-curl -s http://rainbow.ilibrary.me/api/rainbow/random | jq '.sentence'
+# -e 转义换行和颜色控制,\033[32m 打印绿色字符
+echo -e "\033[32m" `curl -s http://rainbow.ilibrary.me/api/rainbow/random | jq '.sentence'`
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:~/.rvm/bin:~/.vimpkg/bin:$PATH"
 
