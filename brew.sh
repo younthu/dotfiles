@@ -139,6 +139,7 @@ brew install postgresql
 brew install jq # 命令行json解析工具, 用于每日一句
 brew install fortune # 用于每日一句
 brew install cowthink #用于每日一句
+brew install go
 
 ## Amusement
 
