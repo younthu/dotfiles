@@ -1,0 +1,6 @@
+# list envs
+conda env list
+
+# create env
+conda create --name flask_api
+conda create --name flask_api python=3.8

@@ -70,4 +70,6 @@ flush privileges;
 environment:
   MYSQL_DATABASE=metabase
 
-
+# 恢复数据库
+mysqladmin -u root -p create mytestdatabase
+mysql -h localhost -u root --protocol=tcp -p mytestdatabse < dump.sql

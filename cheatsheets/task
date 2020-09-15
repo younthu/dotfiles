@@ -76,3 +76,24 @@ Search for pattern in description and annotations:
 $ task /pattern/ list
 $ task rc.search.case.sensitive:yes /pattern/ list
 $ task rc.search.case.sensitive:no /pattern/ list
+
+# 编辑时间, 创建一个2020-11-04的任务，在11月份之前不显示。可以通过task waiting来显示
+task add Send Alice a birthday card \
+           due:2020-11-08 \
+           scheduled:2020-11-04
+           wait:november # 11-01之前不显示
+           until: 2020-11-10 # 11-10自动删除
+           
+task add Send Alice a birthday card \
+           due:2016-11-08 \
+           scheduled:due-4d \
+           wait:due-7d \
+           until:due+2d
+
+# 2天后开始的任务
+ task add '准备去杭州的行程' start:+2d
+
+# 添加循环任务，每天结束的时候自动删除
+task add 'a daily recurring task' recur:daily due:eod until:eod
+task add 'a weekly recurring task' recur:weekly due:eod until:eow
+

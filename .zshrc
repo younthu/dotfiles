@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump git osx rake ruby  wd chucknorris urltools docker web-search zsh-autosuggestions)
+plugins=(autojump git osx rake ruby  wd urltools docker web-search zsh-autosuggestions)
 
 # User configuration
 
@@ -110,7 +110,7 @@ alias ticknow="ruby -e 'p Time.now.to_i'" # ticks start from 1970
 export HOMEBREW_GITHUB_API_TOKEN="d1281fca218612dc1d7047ddfb1efeb9b36353e8"
 
 # logo and some sentence
-chuck_cow
+#chuck_cow
 # say a sentence randomly
 echo "*********毒鸡汤**********"
 # -e 转义换行和颜色控制,\033[32m 打印绿色字符
@@ -153,3 +153,31 @@ git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.ustc
 git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 #------ end of homebrew国内加速
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/i532140/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/i532140/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/i532140/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/i532140/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# android environment,https://reactnative.dev/docs/environment-setup
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# ant
+export ANT_HOME=/usr/local/Cellar/ant/1.10.8_1/libexec/
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+
+setopt no_nomatch
