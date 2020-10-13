@@ -1,0 +1,2 @@
+#指定xcode路径
+ sudo xcode-select -s /Applications/Xcode11.7.app/Contents/Developer

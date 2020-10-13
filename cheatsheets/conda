@@ -4,3 +4,7 @@ conda env list
 # create env
 conda create --name flask_api
 conda create --name flask_api python=3.8
+conda create --name jupyter --clone base # clone一个环境
+
+# remove env
+conda remove --name flask_api
