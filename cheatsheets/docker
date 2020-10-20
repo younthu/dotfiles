@@ -61,3 +61,15 @@ docker logs -f --tail 10 container_name # last 10 lines
 
 # 删除所有已经停止的容器
 docker rm $(docker ps -a -q)
+
+# FTP 共享文件服务
+docker run -d -v $PWD:/home/vsftpd \
+-p 20:20 -p 21:21 -p 21100-21110:21100-21110 \
+-e FTP_USER=fp -e FTP_PASS=fpftppassword \
+-e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 \
+--name vsftpd --restart=always fauria/vsftpd
+
+# Samba文件服务
+docker run -it --name samba -p 139:139 -p 445:445 -v $PWD:/shared -d dperson/samba \
+-u 'admin; passwordyp’ \
+-s ‘Final_Project;/shared/fp;yes;no;yes;all;all;all'
