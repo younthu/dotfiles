@@ -58,3 +58,6 @@ docker system prune -a
 docker logs --since=2m <container_id>   # since last 2 minutes, 非常慢，因为要遍历整个日志，建议用--tail 1000这种命令获取最后1000条日志
 docker logs --since=1h <container_id>   # since last 1 hour
 docker logs -f --tail 10 container_name # last 10 lines
+
+# 删除所有已经停止的容器
+docker rm $(docker ps -a -q)
