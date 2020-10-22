@@ -96,3 +96,8 @@ time.to_formatted_s(:rfc822)        # => "Thu, 18 Jan 2007 06:10:17 -0600"
 
 # generate polymorphic references with index
 rails generate model product supplier:references{polymorphic}:index
+
+# 生成带参数，带环境依赖的rake task, 环境依赖的作用是加载rails环境，没有:environment的依赖的话rails的功能都不能用.
+desc 'load firebase log'
+task :import_json, [:file_path] => [:environment] do |t, args|
+    file = File.open args[:file_path] #"iOS crash.json"
