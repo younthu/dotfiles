@@ -35,3 +35,15 @@ ffmpeg -ss 00:34:24.85 -t 10 -i path/to/file.mp4 -f mp3 pipe:play | ffplay -i pi
 
 # 所有的mov文件压缩为mp4文件
 ffmpeg -i my-video.mov -vcodec h264 -acodec mp2 my-video.mp4
+
+#视频和音频同时x2,https://zhuanlan.zhihu.com/p/105720244
+ffmpeg -i IMG_0824.MOV -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" output.mov
+
+#音频加速x2
+ffmpeg -i input.mkv -filter:a "atempo=2.0" -vn output.mkv
+
+#视频加速2倍，等于采样x0.5. 对视频进行加速时，为了不丢帧，可以利用-r 参数指定输出的fps。
+ffmpeg -i input.mkv -r 16 -filter:v "setpts=0.5*PTS" output.mkv
+
+#音频视频同时加速1.6倍
+ffmpeg -i IMG_0833.MOV -filter_complex "[0:v]setpts=0.625*PTS[v];[0:a]atempo=1.6[a]" -map "[v]" -map "[a]" output0833.mov

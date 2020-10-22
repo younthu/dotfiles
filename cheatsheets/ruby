@@ -55,3 +55,9 @@ data = JSON.parse json_str
 
 # 解析带逗号的数字
 "1,112".delete(',').to_i
+
+# 列出指定目录下所有的文件及子文件，包含文件夹
+Dir.glob("./recipe/recipe/**/*")
+
+# 列出指定目录下所有的文件及子文件，不包含文件夹
+Dir.glob("./recipe/recipe/**/*").reject{ |f| File.directory?(f)}
