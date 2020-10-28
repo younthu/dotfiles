@@ -101,3 +101,7 @@ rails generate model product supplier:references{polymorphic}:index
 desc 'load firebase log'
 task :import_json, [:file_path] => [:environment] do |t, args|
     file = File.open args[:file_path] #"iOS crash.json"
+
+# bundle
+bundle install --without development test
+bundle install --with development

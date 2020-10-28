@@ -47,3 +47,6 @@ ffmpeg -i input.mkv -r 16 -filter:v "setpts=0.5*PTS" output.mkv
 
 #音频视频同时加速1.6倍
 ffmpeg -i IMG_0833.MOV -filter_complex "[0:v]setpts=0.625*PTS[v];[0:a]atempo=1.6[a]" -map "[v]" -map "[a]" output0833.mov
+
+# 视频贴图
+ffmpeg -i soar.mp4  -i circle.png -filter_complex "overlay=5:5" watermarket_multiple_output3.mp4

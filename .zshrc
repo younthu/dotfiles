@@ -107,7 +107,7 @@ alias bi="bundle install"
 alias sedi="sed -i ''"
 alias ticknow="ruby -e 'p Time.now.to_i'" # ticks start from 1970
 
-export HOMEBREW_GITHUB_API_TOKEN="d1281fca218612dc1d7047ddfb1efeb9b36353e8"
+export HOMEBREW_GITHUB_API_TOKEN="274de30505d95bd2b7da838c22279342b38dbc3f"
 
 # logo and some sentence
 #chuck_cow
