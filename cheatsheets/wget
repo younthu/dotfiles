@@ -36,3 +36,4 @@ wget -U 'toto' http://google.com
 
 # 整站下载
 wget --recursive http://google.com
+wget -r http://google.com
