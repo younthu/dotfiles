@@ -97,3 +97,6 @@ task add Send Alice a birthday card \
 task add 'a daily recurring task' recur:daily due:eod until:eod
 task add 'a weekly recurring task' recur:weekly due:eod until:eow
 
+# 删除循环任务
+task all +PARENT # 查找所有循环任务
+task delete task_id
