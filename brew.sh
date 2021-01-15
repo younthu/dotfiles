@@ -141,6 +141,9 @@ brew install fortune # 用于每日一句
 brew install cowthink #用于每日一句
 brew install go
 
+# download tool
+brew install aria2
+
 ## Amusement
 
 # https://zhuanlan.zhihu.com/p/47579886
