@@ -1,0 +1,11 @@
+# To switch to another user account:
+su <user>
+
+su是最简单的身份切换命令，可以进行任何身份的切换。
+[su ]命令将身份切换到root，但是需要输入root密码，以non-login shell的方式读取变量，这种方式很多原本的变量不会改变，尤其是path，由于没有变成root的环境，因此很多root惯用的指令只能用绝对路径来执行。
+[su - 或 su -l username]命令将身份切换到特定用户，但是需要输入该用户密码，不加用户名表示切换到root用户，输入root密码。
+[su - -c 指令]命令已root用户执行命令，且执行完毕后恢复原本的身份。
+使用root切换到任务用户，不需要输入密码。
+
+很多时候需要执行很多root工作，所以一直使用sudo很麻烦，有没有办法使用sudo搭配su，一口气将身份切换到root用户，且用自己的密码切入root。答案是有的，即：[sudo su -]然后输入当前用户密码即可切换到root用户。
+

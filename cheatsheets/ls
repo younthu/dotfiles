@@ -26,3 +26,6 @@ find . -maxdepth 1 -type l -ls
 ls -lhaF | grep '^l'   # list links
 ls -lhaF | grep '^d'   # list directories
 ls -lhaF | grep '^-'   # list files
+
+# 找出所有含test的路径
+ls -F test

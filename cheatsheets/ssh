@@ -47,3 +47,9 @@ ssh -vT git@github.com
 
 # print log to show which key has been used for the authentication and which ones have been tried
 GIT_SSH_COMMAND="ssh -vvv" git clone ssh://git@<bitbucket URL>:<bitbucket port>/<project key>/<repository slug>.git
+
+# 通过ssh远程查看日志文件 
+ssh -t tekapic tail -f /var/www/Tekapic-Server/log/production.log
+
+# 通过ssh远程连接rails console
+ssh -t username@servername "cd /projects/rails_project && bundle exec rails c -e production"
