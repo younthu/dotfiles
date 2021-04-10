@@ -1,0 +1,40 @@
+1. 读取第8列所有的行: `df.iloc[:, 8]`
+1. 读取列名为`ActionUK`的所有记录: `df['ActionUK']`
+1. 遍历所有行: 
+  ~~~python
+  for _, row in df.iterrows():
+    navigationId=row[8] # 获取当前行的第8列的值
+  ~~~
+1. 从第6行开始解析excel文件: `df = pd.read_excel("./Dev-Priority-list.xlsx", skiprows=5)`
+1.  从多个文件中抽取同一个列，并输出到一个csv文件:
+
+    方法1， 通过ndarray来操作
+    ~~~python
+    import pandas as pd
+    import numpy as np
+    result = []
+    for name in ["./IQXFactoryEfficiency20210125.csv", "./IQXFactoryEfficiency20210126.csv", 
+                "./IQXFactoryEfficiency20210127.csv", "./IQXFactoryEfficiency20210205.csv", 
+                "./IQXFactoryEfficiency20210201.csv", "./IQXFactoryEfficiency20210224.csv"] :
+        df = pd.read_csv(name)
+        result = np.append(result, df['SerialNum'].to_numpy()) # dataframe 转换为ndarray并append
+
+    print(result)
+    pd.DataFrame(np.unique(result)).to_csv('sns2.csv') # ndarray去重，转换为dataframe，然后保存
+    ~~~
+
+   方法2, dataframe直接操作
+   ~~~python
+    import pandas as pd
+    import numpy as np
+    result = pd.DataFrame()
+    for name in ["./IQXFactoryEfficiency20210125.csv", "./IQXFactoryEfficiency20210126.csv", 
+                "./IQXFactoryEfficiency20210127.csv", "./IQXFactoryEfficiency20210205.csv", 
+                "./IQXFactoryEfficiency20210201.csv", "./IQXFactoryEfficiency20210224.csv"] :
+        df = pd.read_csv(name)
+        result = pd.concat([result, df['SerialNum']]) # 注意，不能用append
+
+    print(result.drop_duplicates())
+    uniq_df = result.drop_duplicates()  # 去重
+    uniq_df.to_csv('sns3.csv') #保存
+   ~~~
