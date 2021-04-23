@@ -25,16 +25,25 @@
 
    方法2, dataframe直接操作
    ~~~python
-    import pandas as pd
-    import numpy as np
-    result = pd.DataFrame()
-    for name in ["./IQXFactoryEfficiency20210125.csv", "./IQXFactoryEfficiency20210126.csv", 
-                "./IQXFactoryEfficiency20210127.csv", "./IQXFactoryEfficiency20210205.csv", 
-                "./IQXFactoryEfficiency20210201.csv", "./IQXFactoryEfficiency20210224.csv"] :
-        df = pd.read_csv(name)
-        result = pd.concat([result, df['SerialNum']]) # 注意，不能用append
+	import pandas as pd
+	import numpy as np
+	result = pd.DataFrame()
+	for file in os.listdir("./"): # 遍历当前目录
+	    if file.endswith(".csv"): # 读取csv文件
+		df = pd.read_csv(file)
+		result = pd.concat([result, df[['SerialNum','AssyHWRev']]])
 
-    print(result.drop_duplicates())
-    uniq_df = result.drop_duplicates()  # 去重
-    uniq_df.to_csv('sns3.csv') #保存
+	print(result.drop_duplicates())
+	uniq_df = result.drop_duplicates()
+	uniq_df.to_csv('sns3.csv')
    ~~~
+
+创建一个大小为10的空向量
+# np.empty 构造一个大小为 shape 的未初始化数组,
+# np.zeros 构造一个大小为 shape 的全0数组,
+# np.ones 构造一个大小为 shape 的全1数组,
+# np.full 构造一个大小为 shape 的用指定值填满的数组,
+#
+print(np.empty(10))
+print(np.zeros(10))
+print(np.full((2,3),5.0))

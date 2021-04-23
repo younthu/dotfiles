@@ -73,3 +73,15 @@ docker run -d -v $PWD:/home/vsftpd \
 docker run -it --name samba -p 139:139 -p 445:445 -v $PWD:/shared -d dperson/samba \
 -u 'admin; passwordyp’ \
 -s ‘Final_Project;/shared/fp;yes;no;yes;all;all;all'
+
+# 禁止docker container自动启动
+docker update --restart=no baota_app_1
+
+# 修改docker-compose.yml后重启服务:
+~~~sh
+docker-compose stop nginx       // go to hibernate
+docker-compose rm nginx        // shutdown the PC 
+docker-compose create nginx     // create the container from image and put it in hibernate
+
+docker-compose start nginx //bring container to life from hibernation
+~~~
